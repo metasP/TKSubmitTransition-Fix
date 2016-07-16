@@ -1,4 +1,8 @@
 
+# This is Fixed Version for Swift2.0
+
+[Original here](https://github.com/entotsu/TKSubmitTransition)
+
 # TKSubmitTransition
 
 [![Platform](http://img.shields.io/badge/platform-ios-blue.svg?style=flat
@@ -15,7 +19,7 @@ Inpired by https://dribbble.com/shots/1945593-Login-Home-Screen
 
 I created Animated UIButton of Loading Animation and Transition Animation.
 
-As you can see in the GIF Animation Demo below, you can find the “Sign in” button rolling and after that, next UIViewController will fade-in. 
+As you can see in the GIF Animation Demo below, you can find the “Sign in” button rolling and after that, next UIViewController will fade-in.
 
 I made them as classes and you can use it with ease.
 
