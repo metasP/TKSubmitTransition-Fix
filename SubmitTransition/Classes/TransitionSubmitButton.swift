@@ -78,7 +78,7 @@ public class TKTransitionSubmitButton : UIButton, UIViewControllerTransitioningD
         self.spiner.stopAnimation()
     }
     
-    public override func animationDidStop(anim: CAAnimation!, finished flag: Bool) {
+    public override func animationDidStop(anim: CAAnimation, finished flag: Bool) {
         let a = anim as! CABasicAnimation
         if a.keyPath == "transform.scale" {
             didEndFinishAnimation?()
@@ -89,10 +89,24 @@ public class TKTransitionSubmitButton : UIButton, UIViewControllerTransitioningD
     }
     
     public func returnToOriginalState() {
-        
-        self.layer.removeAllAnimations()
-        self.setTitle(self.cachedTitle, forState: .Normal)
-        self.spiner.stopAnimation()
+        returnToOriginalAnimation()
+        NSTimer.schedule(delay: shrinkDuration) { timer in
+            self.layer.removeAllAnimations()
+            self.setTitle(self.cachedTitle, forState: .Normal)
+            self.spiner.stopAnimation()
+        }
+    }
+    
+    func returnToOriginalAnimation() {
+        let shrinkAnim = CABasicAnimation(keyPath: "bounds.size.width")
+        shrinkAnim.fromValue = frame.height
+        shrinkAnim.toValue = frame.width
+        shrinkAnim.duration = shrinkDuration
+        shrinkAnim.timingFunction = shrinkCurve
+        shrinkAnim.fillMode = kCAFillModeForwards
+        shrinkAnim.removedOnCompletion = false
+        layer.addAnimation(shrinkAnim, forKey: shrinkAnim.keyPath)
+
     }
     
     func shrink() {
